@@ -46,6 +46,10 @@ import { LecturerActivities } from '@/(payload)/collections/CampusLife/LecturerA
 import { AlumniActivities } from '@/(payload)/collections/CampusLife/AlumniActivities'
 import { AcademicPrograms } from '@/(payload)/collections/AcademicProgram/academic-program'
 import { AcademicProgramLanding } from '@/(payload)/collections/AcademicProgram/academic-program-landing'
+import { Hero } from '@/(payload)/collections/LandingPage/Hero'
+import { Headlines } from '@/(payload)/collections/LandingPage/Headlines'
+import { Research } from '@/(payload)/collections/LandingPage/Research'
+import { Programs } from '@/(payload)/collections/LandingPage/Programs'
 
 
 // Get validated environment variables
@@ -88,11 +92,11 @@ export default buildConfig({
     Users,
     Media,
 
-    // landing
-    // Hero,
-    // Programs,
-    // Headlines,
-    // Research,
+    // landing,
+    Hero,
+    Programs,
+    Headlines,
+    Research,
 
     // campus life
     Events,
@@ -101,8 +105,8 @@ export default buildConfig({
     AlumniActivities,
 
     // academic program
-    AcademicPrograms,
-    AcademicProgramLanding,
+    // AcademicPrograms,
+    // AcademicProgramLanding,
   ],
 
   // Your Payload secret - should be a complex and secure string, unguessable
