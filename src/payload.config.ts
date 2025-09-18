@@ -44,8 +44,8 @@ import { Events } from '@/(payload)/collections/CampusLife/Events'
 import { StudentActivities } from '@/(payload)/collections/CampusLife/StudentsActivities'
 import { LecturerActivities } from '@/(payload)/collections/CampusLife/LecturerActivities'
 import { AlumniActivities } from '@/(payload)/collections/CampusLife/AlumniActivities'
-import { AcademicPrograms } from '@/(payload)/collections/AcademicProgram/academic-program.ts'
-import { AcademicProgramLanding } from '@/(payload)/collections/AcademicProgram/academic-program-landing.ts'
+import { AcademicPrograms } from '@/(payload)/collections/AcademicProgram/academic-program'
+import { AcademicProgramLanding } from '@/(payload)/collections/AcademicProgram/academic-program-landing'
 
 
 // Get validated environment variables

@@ -69,7 +69,7 @@ export const AcademicProgramLanding: CollectionConfig = {
       name: 'featuredPrograms',
       label: 'Featured Academic Programs',
       type: 'relationship',
-      relationTo: 'academicPrograms',
+      relationTo: 'academic-programs', 
       hasMany: true,
       admin: {
         description: 'Select which programs to display on the landing page',

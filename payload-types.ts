@@ -73,6 +73,8 @@ export interface Config {
     'student-activities': StudentActivity;
     'lecturer-activities': LecturerActivity;
     'alumni-activities': AlumniActivity;
+    'academic-programs': AcademicProgram;
+    'academic-program-landing': AcademicProgramLanding;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +87,8 @@ export interface Config {
     'student-activities': StudentActivitiesSelect<false> | StudentActivitiesSelect<true>;
     'lecturer-activities': LecturerActivitiesSelect<false> | LecturerActivitiesSelect<true>;
     'alumni-activities': AlumniActivitiesSelect<false> | AlumniActivitiesSelect<true>;
+    'academic-programs': AcademicProgramsSelect<false> | AcademicProgramsSelect<true>;
+    'academic-program-landing': AcademicProgramLandingSelect<false> | AcademicProgramLandingSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -239,6 +243,10 @@ export interface Event {
    */
   location?: string | null;
   /**
+   * Registration link (optional)
+   */
+  registerLink?: string | null;
+  /**
    * Type of event
    */
   eventType?: ('brownbag' | 'workshop' | 'seminar' | 'conference' | 'lecture' | 'other') | null;
@@ -339,6 +347,10 @@ export interface StudentActivity {
    */
   mentor?: string | null;
   /**
+   * External link (portfolio, publication, etc.)
+   */
+  externalUrl?: string | null;
+  /**
    * Feature this activity on homepage
    */
   isFeatured?: boolean | null;
@@ -428,6 +440,14 @@ export interface LecturerActivity {
    * Collaborators or co-authors
    */
   collaborators?: string | null;
+  /**
+   * Link to publication or external resource
+   */
+  publicationUrl?: string | null;
+  /**
+   * Link to media coverage or interview
+   */
+  mediaUrl?: string | null;
   /**
    * Feature this activity on homepage
    */
@@ -523,6 +543,14 @@ export interface AlumniActivity {
    */
   impact?: string | null;
   /**
+   * Alumni LinkedIn profile
+   */
+  linkedinUrl?: string | null;
+  /**
+   * External link (news article, publication, etc.)
+   */
+  externalUrl?: string | null;
+  /**
    * Inspirational quote from the alumni
    */
   quote?: string | null;
@@ -534,6 +562,116 @@ export interface AlumniActivity {
    * Make activity visible to public
    */
   isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "academic-programs".
+ */
+export interface AcademicProgram {
+  id: number;
+  programName: string;
+  slug: string;
+  overview?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  learningOutcomes?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  courseStructure?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  bannerImage?: (number | null) | Media;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Content for the main /academic-program page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "academic-program-landing".
+ */
+export interface AcademicProgramLanding {
+  id: number;
+  pageTitle: string;
+  heroTitle?: string | null;
+  heroSubtitle?: string | null;
+  heroImage?: (number | null) | Media;
+  introTitle?: string | null;
+  introDescription?: string | null;
+  vision?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  mission?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Select which programs to display on the landing page
+   */
+  featuredPrograms?: (number | AcademicProgram)[] | null;
+  isPublished?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -567,6 +705,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'alumni-activities';
         value: number | AlumniActivity;
+      } | null)
+    | ({
+        relationTo: 'academic-programs';
+        value: number | AcademicProgram;
+      } | null)
+    | ({
+        relationTo: 'academic-program-landing';
+        value: number | AcademicProgramLanding;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -778,6 +924,39 @@ export interface AlumniActivitiesSelect<T extends boolean = true> {
   quote?: T;
   isFeatured?: T;
   isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "academic-programs_select".
+ */
+export interface AcademicProgramsSelect<T extends boolean = true> {
+  programName?: T;
+  slug?: T;
+  overview?: T;
+  learningOutcomes?: T;
+  courseStructure?: T;
+  bannerImage?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "academic-program-landing_select".
+ */
+export interface AcademicProgramLandingSelect<T extends boolean = true> {
+  pageTitle?: T;
+  heroTitle?: T;
+  heroSubtitle?: T;
+  heroImage?: T;
+  introTitle?: T;
+  introDescription?: T;
+  vision?: T;
+  mission?: T;
+  featuredPrograms?: T;
+  isPublished?: T;
   updatedAt?: T;
   createdAt?: T;
 }
