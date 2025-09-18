@@ -14,7 +14,7 @@ export default function AdmissionsPage() {
       </nav>
       <main>
         <AdmissionsHero />
-        <ProgramsSection />
+        {/* <ProgramsSection /> */}
         <FAQSection />
       </main>
       <footer>
