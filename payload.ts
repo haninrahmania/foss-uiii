@@ -195,6 +195,22 @@ export async function getAlumniActivitiesByCategory(category: string) {
   return data?.docs || []
 }
 
+
+// TAMBAHAN HANIN - TENTATIVE FUNCTIONS
+// Academic Programs data
+export async function getAcademicProgramsData() {
+  const data = await fetchFromPayload('/academic-programs?where[isActive][equals]=true')
+  return data?.docs || []
+}
+
+// Programs data
+export async function getAcademicProgramLandingData() {
+  const data = await fetchFromPayload('/academic-program-landing?where[isActive][equals]=true')
+  return data?.docs || []
+}
+
+
+
 // Helper function to check if media exists
 export async function checkMediaExists(mediaUrl: string): Promise<boolean> {
   try {
