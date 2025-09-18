@@ -86,6 +86,7 @@ try {
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
+  
 
   // Define and configure your collections in this array
   collections: [

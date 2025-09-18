@@ -1,5 +1,5 @@
 {
   "installCommand": "npm install --os=linux --cpu=x64 sharp",
-  "buildCommand": "npm run build",
+  "buildCommand": "npx payload migrate && npm run build",
   "framework": "nextjs"
 }
