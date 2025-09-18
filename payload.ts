@@ -196,18 +196,18 @@ export async function getAlumniActivitiesByCategory(category: string) {
 }
 
 
-// // TAMBAHAN HANIN - TENTATIVE FUNCTIONS
-// // Academic Programs data
-// export async function getAcademicProgramsData() {
-//   const data = await fetchFromPayload('/academic-programs?where[isActive][equals]=true')
-//   return data?.docs || []
-// }
+// TAMBAHAN HANIN - TENTATIVE FUNCTIONS
+// Academic Programs data
+export async function getAcademicProgramsData() {
+  const data = await fetchFromPayload('/academic-programs?where[isActive][equals]=true')
+  return data?.docs || []
+}
 
-// // Programs data
-// export async function getAcademicProgramLandingData() {
-//   const data = await fetchFromPayload('/academic-program-landing?where[isActive][equals]=true')
-//   return data?.docs || []
-// }
+// Programs data
+export async function getAcademicProgramLandingData() {
+  const data = await fetchFromPayload('/academic-program-landing?where[isActive][equals]=true')
+  return data?.docs || []
+}
 
 
 

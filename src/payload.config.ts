@@ -92,7 +92,7 @@ export default buildConfig({
     Users,
     Media,
 
-    // landing,
+    // landing
     Hero,
     Programs,
     Headlines,
@@ -105,8 +105,8 @@ export default buildConfig({
     AlumniActivities,
 
     // academic program
-    // AcademicPrograms,
-    // AcademicProgramLanding,
+    AcademicPrograms,
+    AcademicProgramLanding,
   ],
 
   // Your Payload secret - should be a complex and secure string, unguessable
