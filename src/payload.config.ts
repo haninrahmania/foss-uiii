@@ -157,7 +157,12 @@ export default buildConfig({
   plugins: [
     s3Storage({
       collections: {
-        media: true,    // or your slug for media collection
+        // media: true,    // or your slug for media collection
+        media: {
+          generateFileURL: ({ filename }) => {
+            return `${process.env.R2_PUBLIC_URL}/${filename}`;
+          },
+        },
       },
       bucket: process.env.R2_BUCKET_NAME!,
       config: {
