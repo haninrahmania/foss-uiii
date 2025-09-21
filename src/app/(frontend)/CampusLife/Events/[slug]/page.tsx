@@ -94,30 +94,69 @@ async function getEvent(slug: string) {
 //   );
 // }
 
-export default async function EventPage({ params }: { params: { slug: string } }) {
-  const event = await getEvent(params.slug)
+// 
+export default async function DetailedEventPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const event = await getEvent(params.slug);
 
-  if (!event) return <div>Event not found</div>
+  if (!event) {
+    return (
+      <div>
+        <NavBar />
+        <div className="p-10 text-center">Event not found</div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-4xl mx-auto py-10">
-      <h1 className="text-4xl font-bold mb-4">{event.title}</h1>
-      <p className="text-gray-600">{new Date(event.eventDate).toLocaleDateString()}</p>
-      <p className="text-gray-600">{event.eventTime}</p>
-      <p className="text-gray-600">{event.location}</p>
+    <div className="w-full relative">
+      <NavBar />
 
-      <div className="prose mt-6">
-        <RichText data={event.description} />
-      </div>
+      <section className="py-5 bg-white-50 mb-16">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-5xl font-medium text-sky-950">{event.title}</h2>
 
-      {event.registerLink && (
-        <a
-          href={event.registerLink}
-          className="inline-block mt-6 px-6 py-3 bg-brandNavy text-white rounded-lg"
-        >
-          Register
-        </a>
-      )}
+          <div className="flex flex-col lg:flex-row mt-8">
+            <div className="w-full lg:w-2/3 pr-8">
+              <p className="text-gray-600">
+                {new Date(event.eventDate).toLocaleDateString()}
+              </p>
+              <p className="text-gray-600">{event.eventTime}</p>
+              <p className="text-gray-600">{event.location}</p>
+
+              <div className="prose mt-6">
+                {event.description && <RichText data={event.description} />}
+              </div>
+
+              {event.registerLink && (
+                <a
+                  href={event.registerLink}
+                  className="inline-block mt-6 px-8 py-3 bg-brandNavy text-white rounded-lg hover:bg-[#005c74]"
+                >
+                  Register
+                </a>
+              )}
+            </div>
+
+            {event.image?.url && (
+              <div className="w-full lg:w-1/3">
+                <Image
+                  src={event.image.url}
+                  alt={event.image.alt || event.title}
+                  width={500}
+                  height={500}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
-  )
+  );
 }
