@@ -261,7 +261,7 @@ export default async function Events() {
   const EventCard = ({ event }) => (
     <Link
       key={event.id}
-      href={`/CampusLife/Events/DetailedEvents/${event.slug}`}
+      href={`/CampusLife/Events/${event.slug}`}
       className="block"
     >
       <div
