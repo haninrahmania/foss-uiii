@@ -136,6 +136,7 @@ export default buildConfig({
     pool: {
       connectionString: env.DATABASE_URI,
       max: 5,
+      idleTimeoutMillis: 30000,
     },
   }),
 
