@@ -26,9 +26,15 @@ const nextConfig = {
         hostname: 'mommhrxeyyorqkffsofd.supabase.co',
         pathname: '/**',
       },
+      // {
+      //   protocol: "https",
+      //   hostname: "pub-c283cb6ee7784c9bab6d5edbf276a202.r2.dev",
+      // },
+
       {
-        protocol: "https",
-        hostname: "pub-c283cb6ee7784c9bab6d5edbf276a202.r2.dev",
+        protocol: 'https',
+        hostname: 'foss-uiii.vercel.app', // or localhost during dev
+        pathname: '/api/files/**',
       },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],

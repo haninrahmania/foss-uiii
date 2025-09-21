@@ -165,7 +165,7 @@ export default buildConfig({
         // media: true,    // or your slug for media collection
         media: {
           generateFileURL: ({ filename }) => {
-            return `${process.env.R2_PUBLIC_URL}/${filename}`;
+            return `/api/files/${filename}`
           },
         },
       },
