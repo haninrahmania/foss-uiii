@@ -228,17 +228,22 @@ import Link from "next/link";
 import NavBar from "@/(frontend)/components/Navbar";
 import Footer from "@/(frontend)/components/Footer";
 
-async function getEvents() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/events?limit=100&sort=-eventDate`,
-    {
-      cache: "no-store",
-    }
-  );
-  if (!res.ok) {
-    throw new Error("Failed to fetch events");
+const baseUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL || '';
+
+export async function getEvents() {
+  try {
+    const res = await fetch(`${baseUrl}/api/events`, {
+      next: { revalidate: 60 }, // optional ISR
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch events");
+
+    const data = await res.json();
+    return data.docs;
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    return [];
   }
-  return res.json();
 }
 
 export default async function Events() {
