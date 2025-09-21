@@ -247,8 +247,7 @@ export async function getEvents() {
 }
 
 export default async function Events() {
-  const data = await getEvents();
-  const events = data.docs || [];
+  const events = await getEvents(); // already the array
 
   const now = new Date();
 

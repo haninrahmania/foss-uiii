@@ -11,6 +11,8 @@ export const Media: CollectionConfig = {
   upload: {
     // ❌ remove staticDir
     // ❌ remove disableLocalStorage
+    disableLocalStorage: true, // only use R2
+    // mimeTypes: ['image/*', 'application/pdf'],
     imageSizes: [
       {
         name: 'thumbnail',
