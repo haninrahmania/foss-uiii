@@ -51,6 +51,7 @@ import { Headlines } from "@/(payload)/collections/LandingPage/Headlines";
 import { Research } from "@/(payload)/collections/LandingPage/Research";
 import { Programs } from "@/(payload)/collections/LandingPage/Programs";
 
+
 import { PeopleCollections } from "@/(payload)/collections/people";
 import { ResearchAndPublicationCollections } from "@/(payload)/collections/research-and-publication";
 
@@ -115,7 +116,11 @@ export default buildConfig({
 
     // research & publication
     ...ResearchAndPublicationCollections,
+    
   ],
+  // migrations: {
+  //   dir: 'src/app/(payload)/migrations',
+  // },
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: env.PAYLOAD_SECRET,
