@@ -222,6 +222,7 @@
 //   );
 // }
 
+export const dynamic = "force-dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import NavBar from "@/(frontend)/components/Navbar";
@@ -231,7 +232,7 @@ async function getEvents() {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/events?limit=100&sort=-eventDate`,
     {
-      next: { revalidate: 60 }, // ISR 1 menit
+      cache: "no-store",
     }
   );
   if (!res.ok) {
