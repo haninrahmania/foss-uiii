@@ -26,10 +26,11 @@ const nextConfig = {
         hostname: 'mommhrxeyyorqkffsofd.supabase.co',
         pathname: '/**',
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "pub-c283cb6ee7784c9bab6d5edbf276a202.r2.dev",
-      // },
+      {
+        protocol: "https",
+        hostname: "pub-c283cb6ee7784c9bab6d5edbf276a202.r2.dev",
+        pathname: "/**",
+      },
 
       {
         protocol: 'https',
