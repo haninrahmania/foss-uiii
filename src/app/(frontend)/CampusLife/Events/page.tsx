@@ -228,12 +228,12 @@ import Link from "next/link";
 import NavBar from "@/(frontend)/components/Navbar";
 import Footer from "@/(frontend)/components/Footer";
 
-const baseUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL || '';
+// const baseUrl = process.env.NEXT_PUBLIC_PAYLOAD_URL || '';
 
 export async function getEvents() {
   try {
-    const res = await fetch(`${baseUrl}/api/events`, {
-      next: { revalidate: 60 }, // optional ISR
+    const res = await fetch(`${process.env.NEXT_PUBLIC_PAYLOAD_URL}/api/events`, {
+      cache: "no-store",
     });
 
     if (!res.ok) throw new Error("Failed to fetch events");
