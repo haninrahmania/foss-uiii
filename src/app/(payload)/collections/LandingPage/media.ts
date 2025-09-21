@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from 'payload';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -9,7 +9,8 @@ export const Media: CollectionConfig = {
     delete: ({ req: { user } }) => !!user,
   },
   upload: {
-    staticDir: 'media',
+    // ❌ remove staticDir
+    // ❌ remove disableLocalStorage
     imageSizes: [
       {
         name: 'thumbnail',
@@ -32,40 +33,12 @@ export const Media: CollectionConfig = {
     ],
     adminThumbnail: 'thumbnail',
     mimeTypes: ['image/*', 'application/pdf'],
-    disableLocalStorage: false,
-    // Add file handling options
     formatOptions: {
       format: 'webp',
       options: {
         quality: 85,
       },
     },
-  },
-  hooks: {
-    beforeDelete: [
-      ({ req, id }) => {
-        console.log(`Attempting to delete media with ID: ${id}`);
-      },
-    ],
-    afterDelete: [
-      ({ req, id, doc }) => {
-        console.log(`Successfully deleted media with ID: ${id}`);
-      },
-    ],
-    // Add error handling for missing files
-    beforeRead: [
-      ({ req, doc }) => {
-        if (doc && doc.filename) {
-          const fs = require('fs');
-          const path = require('path');
-          const filePath = path.join(process.cwd(), 'media', doc.filename);
-          
-          if (!fs.existsSync(filePath)) {
-            console.warn(`File missing: ${filePath}`);
-          }
-        }
-      },
-    ],
   },
   fields: [
     {
@@ -77,4 +50,4 @@ export const Media: CollectionConfig = {
       type: 'text',
     },
   ],
-}
+};

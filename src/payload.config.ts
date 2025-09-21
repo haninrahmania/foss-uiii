@@ -96,7 +96,10 @@ export default buildConfig({
   // Define and configure your collections in this array
   collections: [
     Users,
-    Media,
+    {
+      slug: "media",
+      fields: [], // keep your existing fields
+    },
 
     // landing
     Hero,
