@@ -79,6 +79,12 @@ export interface Config {
     'alumni-activities': AlumniActivity;
     'academic-programs': AcademicProgram;
     'academic-program-landing': AcademicProgramLanding;
+    people: Person;
+    'compose-about': ComposeAbout;
+    'compose-vision-mission': ComposeVisionMission;
+    'compose-programs': ComposeProgram;
+    'compose-principles': ComposePrinciple;
+    publications: Publication;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -97,6 +103,12 @@ export interface Config {
     'alumni-activities': AlumniActivitiesSelect<false> | AlumniActivitiesSelect<true>;
     'academic-programs': AcademicProgramsSelect<false> | AcademicProgramsSelect<true>;
     'academic-program-landing': AcademicProgramLandingSelect<false> | AcademicProgramLandingSelect<true>;
+    people: PeopleSelect<false> | PeopleSelect<true>;
+    'compose-about': ComposeAboutSelect<false> | ComposeAboutSelect<true>;
+    'compose-vision-mission': ComposeVisionMissionSelect<false> | ComposeVisionMissionSelect<true>;
+    'compose-programs': ComposeProgramsSelect<false> | ComposeProgramsSelect<true>;
+    'compose-principles': ComposePrinciplesSelect<false> | ComposePrinciplesSelect<true>;
+    publications: PublicationsSelect<false> | PublicationsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -922,6 +934,149 @@ export interface AcademicProgramLanding {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people".
+ */
+export interface Person {
+  id: number;
+  name: string;
+  /**
+   * URL-friendly slug. Auto-generated if empty
+   */
+  slug?: string | null;
+  group: 'faculty' | 'secretariat' | 'student';
+  position?: string | null;
+  program?: ('phd-political-science' | 'ma-political-science' | 'mpp-climate-change' | 'other') | null;
+  photo: number | Media;
+  bio?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  links?:
+    | {
+        label?: string | null;
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  isActive?: boolean | null;
+  isFeatured?: boolean | null;
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-about".
+ */
+export interface ComposeAbout {
+  id: number;
+  heading: string;
+  logo?: (number | null) | Media;
+  paragraphs?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-vision-mission".
+ */
+export interface ComposeVisionMission {
+  id: number;
+  vision: string;
+  missions?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-programs".
+ */
+export interface ComposeProgram {
+  id: number;
+  title: string;
+  description?: string | null;
+  type: 'research-program' | 'approach' | 'fellowship';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-principles".
+ */
+export interface ComposePrinciple {
+  id: number;
+  title: string;
+  description: string;
+  icon?: (number | null) | Media;
+  sortOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications".
+ */
+export interface Publication {
+  id: number;
+  title: string;
+  /**
+   * Auto dari title bila kosong
+   */
+  slug?: string | null;
+  type: 'lecturer' | 'student' | 'working-paper' | 'compose-article';
+  cover: number | Media;
+  authorName: string;
+  publishedAt: string;
+  excerpt?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  tags?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  isFeatured?: boolean | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -974,6 +1129,30 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'academic-program-landing';
         value: number | AcademicProgramLanding;
+      } | null)
+    | ({
+        relationTo: 'people';
+        value: number | Person;
+      } | null)
+    | ({
+        relationTo: 'compose-about';
+        value: number | ComposeAbout;
+      } | null)
+    | ({
+        relationTo: 'compose-vision-mission';
+        value: number | ComposeVisionMission;
+      } | null)
+    | ({
+        relationTo: 'compose-programs';
+        value: number | ComposeProgram;
+      } | null)
+    | ({
+        relationTo: 'compose-principles';
+        value: number | ComposePrinciple;
+      } | null)
+    | ({
+        relationTo: 'publications';
+        value: number | Publication;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -1308,6 +1487,109 @@ export interface AcademicProgramLandingSelect<T extends boolean = true> {
   mission?: T;
   featuredPrograms?: T;
   isPublished?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "people_select".
+ */
+export interface PeopleSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  group?: T;
+  position?: T;
+  program?: T;
+  photo?: T;
+  bio?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        id?: T;
+      };
+  isActive?: T;
+  isFeatured?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-about_select".
+ */
+export interface ComposeAboutSelect<T extends boolean = true> {
+  heading?: T;
+  logo?: T;
+  paragraphs?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-vision-mission_select".
+ */
+export interface ComposeVisionMissionSelect<T extends boolean = true> {
+  vision?: T;
+  missions?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-programs_select".
+ */
+export interface ComposeProgramsSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  type?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "compose-principles_select".
+ */
+export interface ComposePrinciplesSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  icon?: T;
+  sortOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "publications_select".
+ */
+export interface PublicationsSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  type?: T;
+  cover?: T;
+  authorName?: T;
+  publishedAt?: T;
+  excerpt?: T;
+  content?: T;
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  isFeatured?: T;
+  isActive?: T;
   updatedAt?: T;
   createdAt?: T;
 }
