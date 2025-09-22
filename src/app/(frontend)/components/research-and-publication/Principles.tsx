@@ -113,7 +113,7 @@ export default function Principles({ items = [] }: Props) {
           <div>
             <div className="mb-4 flex text-left">
               <img
-                src="/Img-Research/Independent.svg"
+                src="/Img-Research/independent.svg"
                 alt="Book Icon"
                 className="h-20 w-auto"
               />
