@@ -39,7 +39,7 @@ const NavBar = () => {
           label: "PhD Students",
           type: "item",
           indent: true,
-          href: "/people/phd-students",
+          href: "/people/students",
         },
       ],
     },
