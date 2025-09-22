@@ -5,7 +5,7 @@ export default function VisionMision() {
         <div>
           <h2 className="text-5xl font-medium flex items-center gap-2">
             <img
-              src="/Img-AboutFaculty/eye.svg"
+              src="/Img-AboutFaculty/Eye.svg"
               alt="Eye Icon"
               className="w-8 h-8"
             />
