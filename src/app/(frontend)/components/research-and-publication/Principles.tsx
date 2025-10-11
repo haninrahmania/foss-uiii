@@ -108,7 +108,7 @@ export default function Principles({ items = [] }: Props) {
   return (
     <section className="py-16 px-8 bg-[#00748D] text-white ">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-5xl font-medium mb-12">Our Goals</h2>
+        <h2 className="text-5xl font-medium mb-12">Principles</h2>
         <div className="grid md:grid-cols-3 gap-14 text-sm md:text-base mb-8">
           <div>
             <div className="mb-4 flex text-left">
